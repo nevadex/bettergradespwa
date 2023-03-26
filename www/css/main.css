@@ -1,0 +1,39 @@
+body {
+    /* for fixed header */
+    padding-top: 70px;
+    /* disable scroll for better experience */
+    /*overflow: hidden;*/
+    /* for fixed footer */
+    margin-bottom: 30px;
+}
+
+._opaque-bg {
+    background-color: rgba(var(--bs-body-bg-rgb), 1);
+}
+
+p.stacked-text {
+    display: inline-block;
+    text-align: center;
+    margin: 0px;
+}
+p.stacked-text.top {
+    margin-top: 5px;
+}
+p.stacked-text.bottom {
+    margin-bottom: 5px;
+}
+
+@media (display-mode: browser) {
+    .pwa-only {
+        display: none;
+    }
+}
+@media (display-mode: standalone) {
+    .web-only {
+        display: none;
+    }
+}
+
+body {
+    overflow: hidden;
+}

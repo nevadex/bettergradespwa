@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BetterGrades</title>
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+<!-- include scripts here -->
+<script src="lib/jquery/dist/js/jquery.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"></script>
+<script src="js/calc.js"></script>
+
+<header class="fixed-top _opaque-bg web-only">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-themed border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" style="font-style: italic;">BetterGrades</a>
+            <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div style="float:right; display:flex; align-items:center;">
+                <p style="font-size: 20px; font-style: italic;">@ViewData["motd"]</p>
+            </div>-->
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <!--<li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Chat</a>
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <main role="main">
+        <!--<h1 style="text-align: center; padding-top: 30%;">select a menu item at the top to continue</h1>-->
+        <!--<h1>Balls</h1><h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
+
+        <div class="col">
+            <div class="row align-items-start h-50">
+                <div class="col" id="entryDiv">
+                    <h3 class="text-center">Entry</h3>
+                    <div>
+                        <div class="input-group mb-3">
+                            <label for="priWeightRange" class="form-label" id="priWeightLabel">Primary Weight: 50%</label>
+                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.50" id="priWeightRange">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label for="secWeightRange" class="form-label" id="secWeightLabel">Secondary Weight: 45%</label>
+                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.45" id="secWeightRange">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label for="supWeightRange" class="form-label" id="supWeightLabel">Supportive Weight: 5%</label>
+                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.05" id="supWeightRange">
+                        </div>
+                        <div id="invalidWeightsWarning" hidden class="alert alert-warning" role="alert"></div>
+
+                        <hr>
+                        <!--<label class="form-label" for="gradeTypeSelDiv">Select grade type:</label><br>-->
+                        <div class="btn-group" style="padding-bottom: 3%" role="group" id="gradeTypeSelDiv">
+                            <input type="radio" class="btn-check" name="gradeTypeSel" id="priGradeTypeSel" autocomplete="off" checked>
+                            <label class="btn btn-outline-info" for="priGradeTypeSel">Primary</label>
+
+                            <input type="radio" class="btn-check" name="gradeTypeSel" id="secGradeTypeSec" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="secGradeTypeSec">Secondary</label>
+
+                            <input type="radio" class="btn-check" name="gradeTypeSel" id="supGradeTypeSel" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="supGradeTypeSel">Supportive</label>
+                        </div>
+
+                        <div class="mb-3" style="text-align: left">
+                            <!--<label for="gradeInput" class="form-label">Enter grades</label>-->
+                            <input type="text" class="form-control" id="gradeInput" placeholder="Enter grades here..">
+                            <div class="text-muted fst-italic">Use format PointsEarned/PointsPossible, eg. 9/10<br>Press [Enter] to insert grade<br>Press [P] for Primary, [S] for Secondary, or [U] for Supportive</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col pb-2">
+                    <div id="gradesDivHeader">
+                        <h3 class="text-center">Grades</h3>
+                        <p class="text-center text-muted">tap or click a grade to remove it</p>
+                        <hr>
+                    </div>
+                    <div class="list-group list-group-flush" style="overflow: auto" id="gradeList">
+                        <a class="list-group-item"><p class="stacked-text w-25">Grade Type</p><p class="stacked-text w-25">Points</p><p class="stacked-text w-25">Percent</p><p class="stacked-text w-25">Letter Grade</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-start text-center h-50">
+                <div class="col-sm-6 pb-2">
+                    <h3>Results</h3>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Average</p><p class="stacked-text w-50" id="gr-pa">-</p></a>
+                        <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Average</p><p class="stacked-text w-50" id="gr-sa">-</p></a>
+                        <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Average</p><p class="stacked-text w-50" id="gr-ua">-</p></a>
+                        <a class="list-group-item"></a>
+                        <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Composite</p><p class="stacked-text w-50" id="gr-pc">-</p></a>
+                        <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Composite</p><p class="stacked-text w-50" id="gr-sc">-</p></a>
+                        <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Composite</p><p class="stacked-text w-50" id="gr-uc">-</p></a>
+                        <a class="list-group-item"></a>
+                        <a class="list-group-item list-group-item-success"><p class="stacked-text w-50">Final Grade</p><p class="stacked-text w-50" id="gr-f">-</p></a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h3 style="margin-bottom: 16px;">Estimate</h3>
+                    <div class="row">
+                        <div class="input-group mb-3">
+                            <label for="estTarget" class="form-label" id="estTargetLabel">Target Grade: 90%</label>
+                            <input type="range" class="form-range _js-estRefresh" min="0" max="1" step="0.01" value="0.9" id="estTarget">
+
+                            <!--<div class="btn-group" style="padding-bottom: 3%" role="group" id="estGradeSel">
+                                <input type="checkbox" class="btn-check" name="estGradeSel" id="priEstGradeSel" autocomplete="off" checked>
+                                <label class="btn btn-outline-info" for="priEstGradeSel">Primary</label>
+
+                                <input type="checkbox" class="btn-check" name="estGradeSel" id="secEstGradeSel" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="secEstGradeSel">Secondary</label>
+
+                                <input type="checkbox" class="btn-check" name="estGradeSel" id="supEstGradeSel" autocomplete="off" checked>
+                                <label class="btn btn-outline-secondary" for="supEstGradeSel">Supportive</label>
+                            </div>-->
+                        </div>
+                        <div id="estDiv" hidden>
+                            <div class="list-group">
+                                <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Points Needed</p><p class="stacked-text w-50" id="es-p-pn">-</p></a>
+                                <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Points Needed</p><p class="stacked-text w-50" id="es-s-pn">-</p></a>
+                                <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Points Needed</p><p class="stacked-text w-50" id="es-u-pn">-</p></a>
+                                <a class="list-group-item"></a>
+                                <a class="list-group-item list-group-item-light"><p class="stacked-text w-50">Based on your current grades..</p><p class="stacked-text w-50" id="es-based">-</p></a>
+                            </div>
+                        </div>
+                        <div id="estGradeReached">
+                            <h3 style="color: #0f5132">Target Grade Reached</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer class="border-top footer text-muted fixed-bottom _opaque-bg">
+    <div class="container" style="text-align: center;">
+        <p class="stacked-text top" style="font-size: smaller">bettergrades &copy; neev dadhania mmxxiii.</p>
+        <p class="stacked-text bottom" style="font-size: smaller">originally designed for eastern regional high school.</p>
+    </div>
+</footer>
+</body>
+</html>
