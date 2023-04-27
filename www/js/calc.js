@@ -227,9 +227,9 @@ function refreshEstimate() {
         let spn = PtsNeeded(sP, sE, stg, getSecWeight())
         let upn = PtsNeeded(uP, uE, utg, getSupWeight())
 
-        ppn = ppn >= 1001 ? "&infin;" : ppn
-        spn = spn >= 1001 ? "&infin;" : spn
-        upn = upn >= 1001 ? "&infin;" : upn
+        ppn = ppn >= 10001 ? "&infin;" : ppn
+        spn = spn >= 10001 ? "&infin;" : spn
+        upn = upn >= 10001 ? "&infin;" : upn
 
         document.getElementById("es-p-pn").innerHTML = ppn
         document.getElementById("es-s-pn").innerHTML = spn
@@ -248,7 +248,7 @@ function PtsNeeded(p, e, tg, w) {
     while (g*w < tg) {
         ad++
         g = (e+ad)/(p+ad)
-        if (ad > 1000) break
+        if (ad > 10000) break
     }
     return ad;
 }
