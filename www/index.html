@@ -12,7 +12,7 @@
 <!-- include scripts here -->
 <script src="lib/jquery/dist/js/jquery.min.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"></script>
-<script src="js/calc.js"></script>
+<script src="js/main_calc.js"></script>
 
 <header class="fixed-top _opaque-bg web-only">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-themed border-bottom box-shadow mb-3">
@@ -130,12 +130,16 @@
                                 <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Points Needed</p><p class="stacked-text w-50" id="es-p-pn">-</p></a>
                                 <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Points Needed</p><p class="stacked-text w-50" id="es-s-pn">-</p></a>
                                 <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Points Needed</p><p class="stacked-text w-50" id="es-u-pn">-</p></a>
-                                <a class="list-group-item"></a>
-                                <a class="list-group-item list-group-item-light"><p class="stacked-text w-50">Based on your current grades..</p><p class="stacked-text w-50" id="es-based">-</p></a>
+                                <!--<a class="list-group-item"></a>-->
                             </div>
                         </div>
                         <div id="estGradeReached">
                             <h3 style="color: #0f5132">Target Grade Reached</h3>
+                        </div>
+                        <div id="mEstDiv" hidden>
+                            <div class="list-group">
+                                <a class="list-group-item list-group-item-light"><p class="stacked-text w-50">To maintain your current grade..</p><p class="stacked-text w-50" id="es-based">-</p></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,6 +152,8 @@
     <div class="container" style="text-align: center;">
         <p class="stacked-text top" style="font-size: smaller">bettergrades &copy; neev dadhania mmxxiii.</p>
         <p class="stacked-text bottom" style="font-size: smaller">originally designed for eastern regional high school.</p>
+        <p class="stacked-text bottom" style="font-size: smaller"><a href="#">disclaimer</a></p>
+        <p class="stacked-text bottom" style="font-size: smaller"><a href="#">privacy</a></p>
     </div>
 </footer>
 </body>

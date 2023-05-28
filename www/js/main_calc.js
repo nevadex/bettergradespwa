@@ -16,14 +16,17 @@ $(document).ready(function () {
         validateWeights()
     })
 
-    document.getElementById("gradeInput").onpaste = e => e.preventDefault() // TODO: work with decimals
+    document.getElementById("gradeInput").onpaste = e => e.preventDefault()
     document.getElementById("gradeInput").addEventListener("keypress", (ev) => {
+        ev.currentTarget.classList.remove("is-invalid")
         if (ev.code === "Enter") {
             ev.preventDefault()
-            let r = new RegExp("\\d+\\/\\d+", "gm")
+            //let r = new RegExp("\\d+\\/\\d+", "gm")
+            let r = new RegExp("(?:(?:\\d+|(?:\\d+\\.*\\d+))\\/(?:\\d+|(?:\\d+\\.*\\d+)))$", "gm") // support for decimals
             let t = ev.currentTarget.value
             if (r.test(t)) {
-                let cgs = [...t.matchAll(new RegExp("(\\d+)\\/(\\d+)", 'gm'))][0]
+                //let cgs = [...t.matchAll(new RegExp("(\\d+)\\/(\\d+)", 'gm'))][0]
+                let cgs = [...t.matchAll(new RegExp("([\\d+.])\\/([\\d.]+)", "gm"))][0] // support for decimals
                 let a = document.createElement("a")
                 a.classList.add("list-group-item", "list-group-item-action")
                 if (document.getElementById("priGradeTypeSel").checked === true) {
@@ -39,6 +42,10 @@ $(document).ready(function () {
                     a.dataset["gt"] = "u"
                     a.appendChild(gradeListP4("Supportive"))
                 }
+                if (parseFloat(cgs[2]) === 0.0) {
+                    ev.currentTarget.classList.add("is-invalid")
+                    return;
+                }
                 a.dataset["pe"] = cgs[1]
                 a.dataset["pp"] = cgs[2]
                 a.appendChild(gradeListP4(cgs[0]))
@@ -50,12 +57,14 @@ $(document).ready(function () {
                 refreshCalculations()
                 refreshEstimate()
             } else {
-                alert("stop using inspect element")
+                //alert("stop using inspect element")
+                ev.currentTarget.classList.add("is-invalid")
             }
             return
         }
 
-        let r = new RegExp("[\\d|\\/]")
+        //let r = new RegExp("[\\d|\\/]")
+        let r = new RegExp("[\\d\\/.]") // support for decimals
         let k = ev.key.toLowerCase()
         if (!r.test(k)) {
             ev.preventDefault()
@@ -136,6 +145,7 @@ function calcLetterGrade(pe, pp) {
 
 let pa, sa, ua, pc, sc, uc, f
 let pP=0, pE=0, sP=0, sE=0, uP=0, uE=0
+let pn=0, sn=0, un=0
 
 function gradeListP4(t) {
     p = document.createElement("p")
@@ -147,17 +157,21 @@ function gradeListP4(t) {
 function refreshCalculations() {
     let gl = document.getElementById("gradeList").children
     pP=0, pE=0, sP=0, sE=0, uP=0, uE=0
+    pn=0, sn=0, un=0
     for (let x of gl) {
         //let x = gl[i]
         if (x.dataset["gt"] === "p") {
-            pE += parseInt(x.dataset["pe"])
-            pP += parseInt(x.dataset['pp'])
+            pn++
+            pE += parseFloat(x.dataset["pe"])
+            pP += parseFloat(x.dataset['pp'])
         } else if (x.dataset["gt"] === "s") {
-            sE += parseInt(x.dataset["pe"])
-            sP += parseInt(x.dataset["pp"])
+            sn++
+            sE += parseFloat(x.dataset["pe"])
+            sP += parseFloat(x.dataset["pp"])
         } else if (x.dataset["gt"] === "u") {
-            uE += parseInt(x.dataset["pe"])
-            uP += parseInt(x.dataset["pp"])
+            un++
+            uE += parseFloat(x.dataset["pe"])
+            uP += parseFloat(x.dataset["pp"])
         }
     }
     if (pE === 0 && pP === 0) { pE=1; pP=1; }
@@ -199,6 +213,8 @@ function refreshCalculations() {
     document.getElementById("gr-uc").dataset["real"] = uc
     document.getElementById("gr-f").innerHTML = (f.toFixed(dr))+"%"
     document.getElementById("gr-f").dataset["real"] = f
+
+    refreshMaintainEstimate()
 }
 
 function refreshEstimate() {
@@ -234,11 +250,28 @@ function refreshEstimate() {
         document.getElementById("es-p-pn").innerHTML = ppn
         document.getElementById("es-s-pn").innerHTML = spn
         document.getElementById("es-u-pn").innerHTML = upn
-
-
     } else {
         ediv.hidden = true
         document.getElementById("estGradeReached").hidden = false
+    }
+}
+
+function refreshMaintainEstimate() {
+    return // unused
+    let meDiv = document.getElementById("mEstDiv")
+
+    if (Math.round(f) <= 99.9) {
+        meDiv.hidden = false
+
+        /*let pga = (pE / pn) / (pP / pn)
+        let sga = (sE / sn) / (sP / sn)
+        let uga = (uE / un) / (uP / un)
+        console.log(pE / pn, "/", pP / pn)
+        console.log(1 / pga)*/
+
+
+    } else {
+        meDiv.hidden = true
     }
 }
 
