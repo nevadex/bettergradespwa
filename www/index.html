@@ -12,81 +12,96 @@
 <!-- include scripts here -->
 <script src="lib/jquery/dist/js/jquery.min.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"></script>
-<script src="js/main_calc.js"></script>
+<script src="js/calc_class.js"></script>
+<script src="js/site.js"></script>
 
-<header class="fixed-top _opaque-bg web-only">
+<header class="fixed-top _opaque-bg web-only>">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-themed border-bottom box-shadow mb-3">
         <div class="container">
             <a class="navbar-brand" style="font-style: italic;">BetterGrades</a>
-            <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div style="float:right; display:flex; align-items:center;">
-                <p style="font-size: 20px; font-style: italic;">@ViewData["motd"]</p>
-            </div>-->
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <!--<li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Chat</a>
-                    </li>-->
-                </ul>
+            <div class="d-flex" role="search">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="link_class" aria-current="page" onclick="changePage('class')">Class</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="link_gpa" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="/gpa.html">-->GPA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="link_final" onclick="changePage('final')">Finals</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="opacity: 0.5;">
+                                Help
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" id="link_help-class" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->Single Class</a></li>
+                                <li><a class="dropdown-item" id="link_help-gpa" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->GPA</a></li>
+                                <li><a class="dropdown-item" id="link_help-final" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->Finals</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
 </header>
 
 <div class="container">
-    <main role="main">
+    <main role="main" id="main_class">
         <!--<h1 style="text-align: center; padding-top: 30%;">select a menu item at the top to continue</h1>-->
         <!--<h1>Balls</h1><h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
 
         <div class="col">
             <div class="row align-items-start h-50">
-                <div class="col" id="entryDiv">
+                <div class="col" id="class_entryDiv">
                     <h3 class="text-center">Entry</h3>
                     <div>
                         <div class="input-group mb-3">
-                            <label for="priWeightRange" class="form-label" id="priWeightLabel">Primary Weight: 50%</label>
-                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.50" id="priWeightRange">
+                            <label for="class_priWeightRange" class="form-label" id="class_priWeightLabel">Primary Weight: 50%</label>
+                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.50" id="class_priWeightRange">
                         </div>
                         <div class="input-group mb-3">
-                            <label for="secWeightRange" class="form-label" id="secWeightLabel">Secondary Weight: 45%</label>
-                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.45" id="secWeightRange">
+                            <label for="class_secWeightRange" class="form-label" id="class_secWeightLabel">Secondary Weight: 45%</label>
+                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.45" id="class_secWeightRange">
                         </div>
                         <div class="input-group mb-3">
-                            <label for="supWeightRange" class="form-label" id="supWeightLabel">Supportive Weight: 5%</label>
-                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.05" id="supWeightRange">
+                            <label for="class_supWeightRange" class="form-label" id="class_supWeightLabel">Supportive Weight: 5%</label>
+                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.05" id="class_supWeightRange">
                         </div>
-                        <div id="invalidWeightsWarning" hidden class="alert alert-warning" role="alert"></div>
+                        <div id="class_invalidWeightsWarning" hidden class="alert alert-warning" role="alert"></div>
 
                         <hr>
                         <!--<label class="form-label" for="gradeTypeSelDiv">Select grade type:</label><br>-->
-                        <div class="btn-group" style="padding-bottom: 3%" role="group" id="gradeTypeSelDiv">
-                            <input type="radio" class="btn-check" name="gradeTypeSel" id="priGradeTypeSel" autocomplete="off" checked>
-                            <label class="btn btn-outline-info" for="priGradeTypeSel">Primary</label>
+                        <div class="btn-group" style="padding-bottom: 3%" role="group" id="class_gradeTypeSelDiv">
+                            <input type="radio" class="btn-check" name="gradeTypeSel" id="class_priGradeTypeSel" autocomplete="off" checked>
+                            <label class="btn btn-outline-info" for="class_priGradeTypeSel">Primary</label>
 
-                            <input type="radio" class="btn-check" name="gradeTypeSel" id="secGradeTypeSec" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="secGradeTypeSec">Secondary</label>
+                            <input type="radio" class="btn-check" name="gradeTypeSel" id="class_secGradeTypeSec" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="class_secGradeTypeSec">Secondary</label>
 
-                            <input type="radio" class="btn-check" name="gradeTypeSel" id="supGradeTypeSel" autocomplete="off">
-                            <label class="btn btn-outline-secondary" for="supGradeTypeSel">Supportive</label>
+                            <input type="radio" class="btn-check" name="gradeTypeSel" id="class_supGradeTypeSel" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="class_supGradeTypeSel">Supportive</label>
                         </div>
 
                         <div class="mb-3" style="text-align: left">
                             <!--<label for="gradeInput" class="form-label">Enter grades</label>-->
-                            <input type="text" class="form-control" id="gradeInput" placeholder="Enter grades here..">
+                            <input type="text" class="form-control" id="class_gradeInput" placeholder="Enter grades here..">
                             <div class="text-muted fst-italic">Use format PointsEarned/PointsPossible, eg. 9/10<br>Press [Enter] to insert grade<br>Press [P] for Primary, [S] for Secondary, or [U] for Supportive</div>
                         </div>
                     </div>
                 </div>
                 <div class="col pb-2">
-                    <div id="gradesDivHeader">
+                    <div id="class_gradesDivHeader">
                         <h3 class="text-center">Grades</h3>
                         <p class="text-center text-muted">tap or click a grade to remove it</p>
                         <hr>
                     </div>
-                    <div class="list-group list-group-flush" style="overflow: auto" id="gradeList">
+                    <div class="list-group list-group-flush" style="overflow: auto" id="class_gradeList">
                         <a class="list-group-item"><p class="stacked-text w-25">Grade Type</p><p class="stacked-text w-25">Points</p><p class="stacked-text w-25">Percent</p><p class="stacked-text w-25">Letter Grade</p></a>
                     </div>
                 </div>
@@ -96,47 +111,41 @@
                 <div class="col-sm-6 pb-2">
                     <h3>Results</h3>
                     <div class="list-group">
-                        <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Average</p><p class="stacked-text w-50" id="gr-pa">-</p></a>
-                        <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Average</p><p class="stacked-text w-50" id="gr-sa">-</p></a>
-                        <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Average</p><p class="stacked-text w-50" id="gr-ua">-</p></a>
+                        <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Average</p><p class="stacked-text w-50" id="class_gr-pa">-</p></a>
+                        <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Average</p><p class="stacked-text w-50" id="class_gr-sa">-</p></a>
+                        <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Average</p><p class="stacked-text w-50" id="class_gr-ua">-</p></a>
                         <a class="list-group-item"></a>
-                        <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Composite</p><p class="stacked-text w-50" id="gr-pc">-</p></a>
-                        <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Composite</p><p class="stacked-text w-50" id="gr-sc">-</p></a>
-                        <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Composite</p><p class="stacked-text w-50" id="gr-uc">-</p></a>
+                        <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Composite</p><p class="stacked-text w-50" id="class_gr-pc">-</p></a>
+                        <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Composite</p><p class="stacked-text w-50" id="class_gr-sc">-</p></a>
+                        <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Composite</p><p class="stacked-text w-50" id="class_gr-uc">-</p></a>
                         <a class="list-group-item"></a>
-                        <a class="list-group-item list-group-item-success"><p class="stacked-text w-50">Final Grade</p><p class="stacked-text w-50" id="gr-f">-</p></a>
+                        <a class="list-group-item list-group-item-success"><p class="stacked-text w-50">Final Grade</p><p class="stacked-text w-50" id="class_gr-f">-</p></a>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <h3 style="margin-bottom: 16px;">Estimate</h3>
                     <div class="row">
                         <div class="input-group mb-3">
-                            <label for="estTarget" class="form-label" id="estTargetLabel">Target Grade: 90%</label>
-                            <input type="range" class="form-range _js-estRefresh" min="0" max="1" step="0.01" value="0.9" id="estTarget">
-
-                            <!--<div class="btn-group" style="padding-bottom: 3%" role="group" id="estGradeSel">
-                                <input type="checkbox" class="btn-check" name="estGradeSel" id="priEstGradeSel" autocomplete="off" checked>
-                                <label class="btn btn-outline-info" for="priEstGradeSel">Primary</label>
-
-                                <input type="checkbox" class="btn-check" name="estGradeSel" id="secEstGradeSel" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="secEstGradeSel">Secondary</label>
-
-                                <input type="checkbox" class="btn-check" name="estGradeSel" id="supEstGradeSel" autocomplete="off" checked>
-                                <label class="btn btn-outline-secondary" for="supEstGradeSel">Supportive</label>
-                            </div>-->
+                            <label for="class_estTarget" class="form-label" id="class_estTargetLabel">Target Grade: 90%</label>
+                            <input type="range" class="form-range _js-estRefresh" min="0" max="1" step="0.01" value="0.9" id="class_estTarget">
                         </div>
-                        <div id="estDiv" hidden>
+                        <div id="class_estDiv" hidden>
                             <div class="list-group">
-                                <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Points Needed</p><p class="stacked-text w-50" id="es-p-pn">-</p></a>
-                                <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Points Needed</p><p class="stacked-text w-50" id="es-s-pn">-</p></a>
-                                <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Points Needed</p><p class="stacked-text w-50" id="es-u-pn">-</p></a>
+                                <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Primary Points Needed</p><p class="stacked-text w-50" id="class_es-p-pn">-</p></a>
+                                <a class="list-group-item list-group-item-primary"><p class="stacked-text w-50">Secondary Points Needed</p><p class="stacked-text w-50" id="class_es-s-pn">-</p></a>
+                                <a class="list-group-item list-group-item-secondary"><p class="stacked-text w-50">Supportive Points Needed</p><p class="stacked-text w-50" id="class_es-u-pn">-</p></a>
                                 <!--<a class="list-group-item"></a>-->
                             </div>
+
+                            <br>
+                            <div class="alert alert-dark" role="alert">
+                                Is BetterGrades helpful for you? Please <a target="_blank" href="https://forms.gle/eNXLLCAS7owN98GQ6">submit feedback</a> to aid in development!
+                            </div>
                         </div>
-                        <div id="estGradeReached">
+                        <div id="class_estGradeReached">
                             <h3 style="color: #0f5132">Target Grade Reached</h3>
                         </div>
-                        <div id="mEstDiv" hidden>
+                        <div id="class_mEstDiv" hidden>
                             <div class="list-group">
                                 <a class="list-group-item list-group-item-light"><p class="stacked-text w-50">To maintain your current grade..</p><p class="stacked-text w-50" id="es-based">-</p></a>
                             </div>
@@ -146,15 +155,40 @@
             </div>
         </div>
     </main>
+
+    <main role="main" id="main_final">
+        <!--<h1 style="text-align: center; padding-top: 30%;">select a menu item at the top to continue</h1>-->
+        <h1>Balls</h1><h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
+    </main>
 </div>
 
 <footer class="border-top footer text-muted fixed-bottom _opaque-bg">
     <div class="container" style="text-align: center;">
         <p class="stacked-text top" style="font-size: smaller">bettergrades &copy; neev dadhania mmxxiii.</p>
         <p class="stacked-text bottom" style="font-size: smaller">originally designed for eastern regional high school.</p>
-        <p class="stacked-text bottom" style="font-size: smaller"><a href="#">disclaimer</a></p>
-        <p class="stacked-text bottom" style="font-size: smaller"><a href="#">privacy</a></p>
+        <!--<p class="stacked-text bottom" style="font-size: smaller"><a href="#">disclaimer</a></p>
+        <p class="stacked-text bottom" style="font-size: smaller"><a href="#">privacy</a></p>-->
     </div>
 </footer>
 </body>
+
+<!-- Modal -->
+<div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: 0;">
+                <!--<h1 class="modal-title fs-5" id="exampleModalLabel">This feature is coming soon</h1>-->
+                <div class="modal-body">
+                    This feature does not exist yet!
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>-->
+        </div>
+    </div>
+</div>
+
 </html>

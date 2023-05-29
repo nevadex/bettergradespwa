@@ -1,23 +1,23 @@
 $(document).ready(function () {
-    document.getElementById("priWeightRange").addEventListener("input", (ev) => {
-        document.getElementById("priWeightLabel").innerText = "Primary Weight: " + (getPriWeight() * 100).toFixed(0) + "%"
+    document.getElementById("class_priWeightRange").addEventListener("input", (ev) => {
+        document.getElementById("class_priWeightLabel").innerText = "Primary Weight: " + (getPriWeight() * 100).toFixed(0) + "%"
         validateWeights()
     })
-    document.getElementById("secWeightRange").addEventListener("input", (ev) => {
-        document.getElementById("secWeightLabel").innerText = "Secondary Weight: " + (getSecWeight() * 100).toFixed(0) + "%"
+    document.getElementById("class_secWeightRange").addEventListener("input", (ev) => {
+        document.getElementById("class_secWeightLabel").innerText = "Secondary Weight: " + (getSecWeight() * 100).toFixed(0) + "%"
         validateWeights()
     })
-    document.getElementById("supWeightRange").addEventListener("input", (ev) => {
-        document.getElementById("supWeightLabel").innerText = "Supportive Weight: " + (getSupWeight() * 100).toFixed(0) + "%"
+    document.getElementById("class_supWeightRange").addEventListener("input", (ev) => {
+        document.getElementById("class_supWeightLabel").innerText = "Supportive Weight: " + (getSupWeight() * 100).toFixed(0) + "%"
         validateWeights()
     })
-    document.getElementById("estTarget").addEventListener("input", (ev) => {
-        document.getElementById("estTargetLabel").innerText = "Target Grade: " + (getTargetGrade()).toFixed(0) + "%"
+    document.getElementById("class_estTarget").addEventListener("input", (ev) => {
+        document.getElementById("class_estTargetLabel").innerText = "Target Grade: " + (getTargetGrade()).toFixed(0) + "%"
         validateWeights()
     })
 
-    document.getElementById("gradeInput").onpaste = e => e.preventDefault()
-    document.getElementById("gradeInput").addEventListener("keypress", (ev) => {
+    document.getElementById("class_gradeInput").onpaste = e => e.preventDefault()
+    document.getElementById("class_gradeInput").addEventListener("keypress", (ev) => {
         ev.currentTarget.classList.remove("is-invalid")
         if (ev.code === "Enter") {
             ev.preventDefault()
@@ -29,11 +29,11 @@ $(document).ready(function () {
                 let cgs = [...t.matchAll(new RegExp("([\\d.]+)\\/([\\d.]+)", "gm"))][0] // support for decimals
                 let a = document.createElement("a")
                 a.classList.add("list-group-item", "list-group-item-action")
-                if (document.getElementById("priGradeTypeSel").checked === true) {
+                if (document.getElementById("class_priGradeTypeSel").checked === true) {
                     a.classList.add("list-group-item-info")
                     a.dataset["gt"] = "p"
                     a.appendChild(gradeListP4("Primary"))
-                } else if (document.getElementById("secGradeTypeSec").checked === true) {
+                } else if (document.getElementById("class_secGradeTypeSec").checked === true) {
                     a.classList.add("list-group-item-primary")
                     a.dataset["gt"] = "s"
                     a.appendChild(gradeListP4("Secondary"))
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 a.appendChild(gradeListP4((cgs[1]/cgs[2]*100).toFixed(0)+"%"))
                 a.appendChild(gradeListP4(calcLetterGrade(cgs[1], cgs[2])))
                 a.onclick = (ev) => {ev.currentTarget.remove(); refreshCalculations(); refreshEstimate();}
-                document.getElementById("gradeList").appendChild(a)
+                document.getElementById("class_gradeList").appendChild(a)
                 ev.currentTarget.value = ""
                 refreshCalculations()
                 refreshEstimate()
@@ -69,11 +69,11 @@ $(document).ready(function () {
         if (!r.test(k)) {
             ev.preventDefault()
             if (k === 'p') {
-                document.getElementById("priGradeTypeSel").click()
+                document.getElementById("class_priGradeTypeSel").click()
             } else if (k === 's') {
-                document.getElementById("secGradeTypeSec").click()
+                document.getElementById("class_secGradeTypeSec").click()
             } else if (k === 'u') {
-                document.getElementById("supGradeTypeSel").click()
+                document.getElementById("class_supGradeTypeSel").click()
             }
         }
         return
@@ -97,23 +97,23 @@ $(document).ready(function () {
         }
     }
 
-    document.getElementById("gradeList").style.height = document.getElementById("entryDiv").offsetHeight - document.getElementById("gradesDivHeader").offsetHeight - document.getElementById("gradeList").offsetHeight + "px"
+    document.getElementById("class_gradeList").style.height = document.getElementById("class_entryDiv").offsetHeight - document.getElementById("class_gradesDivHeader").offsetHeight - document.getElementById("class_gradeList").offsetHeight + "px"
 
     refreshCalculations()
 })
 
 function getPriWeight() {
-    return parseFloat(document.getElementById("priWeightRange").value)
+    return parseFloat(document.getElementById("class_priWeightRange").value)
 }
 function getSecWeight() {
-    return parseFloat(document.getElementById("secWeightRange").value)
+    return parseFloat(document.getElementById("class_secWeightRange").value)
 }
 function getSupWeight() {
-    return parseFloat(document.getElementById("supWeightRange").value)
+    return parseFloat(document.getElementById("class_supWeightRange").value)
 }
 function validateWeights() {
     let total = getPriWeight() + getSecWeight() + getSupWeight()
-    let e = document.getElementById("invalidWeightsWarning")
+    let e = document.getElementById("class_invalidWeightsWarning")
     if (total > 1.0) {
         e.innerHTML = "Invalid Weights - Weight combination is too high, lower one or more grade weights to continue"
         e.hidden = false
@@ -125,7 +125,7 @@ function validateWeights() {
     }
 }
 function getTargetGrade() {
-    return parseFloat(document.getElementById("estTarget").value)*100
+    return parseFloat(document.getElementById("class_estTarget").value)*100
 }
 
 function calcLetterGrade(pe, pp) {
@@ -155,7 +155,7 @@ function gradeListP4(t) {
 }
 
 function refreshCalculations() {
-    let gl = document.getElementById("gradeList").children
+    let gl = document.getElementById("class_gradeList").children
     pP=0, pE=0, sP=0, sE=0, uP=0, uE=0
     pn=0, sn=0, un=0
     for (let x of gl) {
@@ -199,39 +199,39 @@ function refreshCalculations() {
     uc = uc%1!==0 ? (uc.toFixed(dr)) : uc
     */
 
-    document.getElementById("gr-pa").innerHTML = (pa.toFixed(dr))+"%"
-    document.getElementById("gr-pa").dataset["real"] = pa
-    document.getElementById("gr-sa").innerHTML = (sa.toFixed(dr))+"%"
-    document.getElementById("gr-sa").dataset["real"] = sa
-    document.getElementById("gr-ua").innerHTML = (ua.toFixed(dr))+"%"
-    document.getElementById("gr-ua").dataset["real"] = ua
-    document.getElementById("gr-pc").innerHTML = (pc.toFixed(dr))+"%"
-    document.getElementById("gr-pc").dataset["real"] = pc
-    document.getElementById("gr-sc").innerHTML = (sc.toFixed(dr))+"%"
-    document.getElementById("gr-sc").dataset["real"] = sc
-    document.getElementById("gr-uc").innerHTML = (uc.toFixed(dr))+"%"
-    document.getElementById("gr-uc").dataset["real"] = uc
-    document.getElementById("gr-f").innerHTML = (f.toFixed(dr))+"%"
-    document.getElementById("gr-f").dataset["real"] = f
+    document.getElementById("class_gr-pa").innerHTML = (pa.toFixed(dr))+"%"
+    document.getElementById("class_gr-pa").dataset["real"] = pa
+    document.getElementById("class_gr-sa").innerHTML = (sa.toFixed(dr))+"%"
+    document.getElementById("class_gr-sa").dataset["real"] = sa
+    document.getElementById("class_gr-ua").innerHTML = (ua.toFixed(dr))+"%"
+    document.getElementById("class_gr-ua").dataset["real"] = ua
+    document.getElementById("class_gr-pc").innerHTML = (pc.toFixed(dr))+"%"
+    document.getElementById("class_gr-pc").dataset["real"] = pc
+    document.getElementById("class_gr-sc").innerHTML = (sc.toFixed(dr))+"%"
+    document.getElementById("class_gr-sc").dataset["real"] = sc
+    document.getElementById("class_gr-uc").innerHTML = (uc.toFixed(dr))+"%"
+    document.getElementById("class_gr-uc").dataset["real"] = uc
+    document.getElementById("class_gr-f").innerHTML = (f.toFixed(dr))+"%"
+    document.getElementById("class_gr-f").dataset["real"] = f
 
     refreshMaintainEstimate()
 }
 
 function refreshEstimate() {
     let tg = getTargetGrade()
-    let ediv = document.getElementById("estDiv")
+    let ediv = document.getElementById("class_estDiv")
 
     if (Math.round(f) < tg) {
-        document.getElementById("estGradeReached").hidden = true
+        document.getElementById("class_estGradeReached").hidden = true
         ediv.hidden = false
         let ptg, stg, utg, rd=0
 
         ptg = (tg * getPriWeight() / 100)
-        //if (!document.getElementById("priEstGradeSel").checked) {ptg=-1}
+        //if (!document.getElementById("class_priEstGradeSel").checked) {ptg=-1}
         stg = (tg * getSecWeight() / 100)
-        //if (!document.getElementById("secEstGradeSel").checked) {stg=-1}
+        //if (!document.getElementById("class_secEstGradeSel").checked) {stg=-1}
         utg = (tg * getSupWeight() / 100)
-        //if (!document.getElementById("supEstGradeSel").checked) {utg=-1}
+        //if (!document.getElementById("class_supEstGradeSel").checked) {utg=-1}
 
         if (pc/100 > ptg && ptg!==-1) { rd+=(pc/100)-ptg }
         if (sc/100 > stg && stg!==-1) { rd+=(sc/100)-stg }
@@ -247,18 +247,18 @@ function refreshEstimate() {
         spn = spn >= 10001 ? "&infin;" : spn
         upn = upn >= 10001 ? "&infin;" : upn
 
-        document.getElementById("es-p-pn").innerHTML = ppn
-        document.getElementById("es-s-pn").innerHTML = spn
-        document.getElementById("es-u-pn").innerHTML = upn
+        document.getElementById("class_es-p-pn").innerHTML = ppn
+        document.getElementById("class_es-s-pn").innerHTML = spn
+        document.getElementById("class_es-u-pn").innerHTML = upn
     } else {
         ediv.hidden = true
-        document.getElementById("estGradeReached").hidden = false
+        document.getElementById("class_estGradeReached").hidden = false
     }
 }
 
 function refreshMaintainEstimate() {
     return // unused
-    let meDiv = document.getElementById("mEstDiv")
+    let meDiv = document.getElementById("class_mEstDiv")
 
     if (Math.round(f) <= 99.9) {
         meDiv.hidden = false
