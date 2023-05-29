@@ -32,7 +32,8 @@
                             <a class="nav-link" id="link_gpa" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="/gpa.html">-->GPA</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="link_final" onclick="changePage('final')">Finals</a>
+                            <!--<a class="nav-link" id="link_final" onclick="changePage('final')">Finals</a> disabled until finals calc is done-->
+                            <a class="nav-link" id="link_final" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;">Finals</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="opacity: 0.5;">
@@ -52,6 +53,12 @@
 </header>
 
 <div class="container">
+    <div class="d-flex justify-content-center m-lg-5 _opaque-bg" id="loadingSpinner" style="z-index: 999; width: 10000px; height: 10000px;">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
     <main role="main" id="main_class">
         <!--<h1 style="text-align: center; padding-top: 30%;">select a menu item at the top to continue</h1>-->
         <!--<h1>Balls</h1><h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
@@ -101,7 +108,7 @@
                         <p class="text-center text-muted">tap or click a grade to remove it</p>
                         <hr>
                     </div>
-                    <div class="list-group list-group-flush" style="overflow: auto" id="class_gradeList">
+                    <div class="list-group list-group-flush" style="overflow: auto;" id="class_gradeList">
                         <a class="list-group-item"><p class="stacked-text w-25">Grade Type</p><p class="stacked-text w-25">Points</p><p class="stacked-text w-25">Percent</p><p class="stacked-text w-25">Letter Grade</p></a>
                     </div>
                 </div>
@@ -156,9 +163,9 @@
         </div>
     </main>
 
-    <main role="main" id="main_final">
+    <main role="main" id="main_final" hidden>
         <!--<h1 style="text-align: center; padding-top: 30%;">select a menu item at the top to continue</h1>-->
-        <h1>Balls</h1><h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
+        <h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
     </main>
 </div>
 

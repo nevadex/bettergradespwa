@@ -1,4 +1,3 @@
-let currentPage = "class"
 function changePage(pg) {
     let class_pg = document.getElementById("main_class")
     //let gpa_pg = document.getElementById("main_gpa")
@@ -28,3 +27,7 @@ function changePage(pg) {
         final_link.classList.add("active")
     }
 }
+$(document).ready(function () {
+    changePage("class")
+    document.getElementById("loadingSpinner").remove()
+})
