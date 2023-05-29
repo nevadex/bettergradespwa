@@ -26,7 +26,7 @@ $(document).ready(function () {
             let t = ev.currentTarget.value
             if (r.test(t)) {
                 //let cgs = [...t.matchAll(new RegExp("(\\d+)\\/(\\d+)", 'gm'))][0]
-                let cgs = [...t.matchAll(new RegExp("([\\d+.])\\/([\\d.]+)", "gm"))][0] // support for decimals
+                let cgs = [...t.matchAll(new RegExp("([\\d.]+)\\/([\\d.]+)", "gm"))][0] // support for decimals
                 let a = document.createElement("a")
                 a.classList.add("list-group-item", "list-group-item-action")
                 if (document.getElementById("priGradeTypeSel").checked === true) {
