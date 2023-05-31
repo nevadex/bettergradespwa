@@ -28,6 +28,6 @@ function changePage(pg) {
     }
 }
 $(document).ready(function () {
-    changePage("class")
+    changePage("final")
     document.getElementById("loadingSpinner").remove()
 })

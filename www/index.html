@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BetterGrades</title>
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD">
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
@@ -13,6 +13,7 @@
 <script src="lib/jquery/dist/js/jquery.min.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"></script>
 <script src="js/calc_class.js"></script>
+<script src="js/calc_final.js"></script>
 <script src="js/site.js"></script>
 
 <header class="fixed-top _opaque-bg web-only>">
@@ -26,14 +27,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav nav-pills nav-fill">
                         <li class="nav-item">
-                            <a class="nav-link active" id="link_class" aria-current="page" onclick="changePage('class')">Class</a>
+                            <a class="nav-link" id="link_class" aria-current="page" onclick="changePage('class')">Class</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="link_gpa" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="/gpa.html">-->GPA</a>
                         </li>
                         <li class="nav-item">
-                            <!--<a class="nav-link" id="link_final" onclick="changePage('final')">Finals</a> disabled until finals calc is done-->
-                            <a class="nav-link" id="link_final" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;">Finals</a>
+                            <a class="nav-link" id="link_final" onclick="changePage('final')">Finals</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="opacity: 0.5;">
@@ -60,9 +60,6 @@
     </div>
 
     <main role="main" id="main_class">
-        <!--<h1 style="text-align: center; padding-top: 30%;">select a menu item at the top to continue</h1>-->
-        <!--<h1>Balls</h1><h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
-
         <div class="col">
             <div class="row align-items-start h-50">
                 <div class="col" id="class_entryDiv">
@@ -70,15 +67,15 @@
                     <div>
                         <div class="input-group mb-3">
                             <label for="class_priWeightRange" class="form-label" id="class_priWeightLabel">Primary Weight: 50%</label>
-                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.50" id="class_priWeightRange">
+                            <input type="range" class="form-range _js_class-inputCalcRefresh _js_class-estRefresh" min="0" max="1" step="0.05" value="0.50" id="class_priWeightRange">
                         </div>
                         <div class="input-group mb-3">
                             <label for="class_secWeightRange" class="form-label" id="class_secWeightLabel">Secondary Weight: 45%</label>
-                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.45" id="class_secWeightRange">
+                            <input type="range" class="form-range _js_class-inputCalcRefresh _js_class-estRefresh" min="0" max="1" step="0.05" value="0.45" id="class_secWeightRange">
                         </div>
                         <div class="input-group mb-3">
                             <label for="class_supWeightRange" class="form-label" id="class_supWeightLabel">Supportive Weight: 5%</label>
-                            <input type="range" class="form-range _js-inputCalcRefresh _js-estRefresh" min="0" max="1" step="0.05" value="0.05" id="class_supWeightRange">
+                            <input type="range" class="form-range _js_class-inputCalcRefresh _js_class-estRefresh" min="0" max="1" step="0.05" value="0.05" id="class_supWeightRange">
                         </div>
                         <div id="class_invalidWeightsWarning" hidden class="alert alert-warning" role="alert"></div>
 
@@ -134,7 +131,7 @@
                     <div class="row">
                         <div class="input-group mb-3">
                             <label for="class_estTarget" class="form-label" id="class_estTargetLabel">Target Grade: 90%</label>
-                            <input type="range" class="form-range _js-estRefresh" min="0" max="1" step="0.01" value="0.9" id="class_estTarget">
+                            <input type="range" class="form-range _js_class-estRefresh" min="0" max="1" step="0.01" value="0.9" id="class_estTarget">
                         </div>
                         <div id="class_estDiv" hidden>
                             <div class="list-group">
@@ -146,7 +143,7 @@
 
                             <br>
                             <div class="alert alert-dark" role="alert">
-                                Is BetterGrades helpful for you? Please <a target="_blank" href="https://forms.gle/eNXLLCAS7owN98GQ6">submit feedback</a> to aid in development!
+                                Is BetterGrades helpful for you? Please <a target="_blank" href="https://forms.gle/eNXLLCAS7owN98GQ6">submit feedback</a>!
                             </div>
                         </div>
                         <div id="class_estGradeReached">
@@ -164,8 +161,83 @@
     </main>
 
     <main role="main" id="main_final" hidden>
-        <!--<h1 style="text-align: center; padding-top: 30%;">select a menu item at the top to continue</h1>-->
-        <h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
+        <!--<h1>tortor<br>vitae<br>purus<br>faucibus<br>ornare<br>suspendisse<br>sed<br>nisi<br>lacus<br>sed<br>viverra<br>tellus<br>in<br>hac<br>habitasse<br>platea<br>dictumst<br>vestibulum<br>rhoncus<br>est<br>pellentesque<br>elit<br>ullamcorper<br>dignissim<br>cras<br>tincidunt<br>lobortis<br>feugiat<br>vivamus<br>at<br>augue<br>eget<br>arcu<br>dictum<br>varius<br>duis<br>at<br>consectetur<br>lorem<br>donec<br>massa<br>sapien<br>faucibus<br>et<br>molestie<br>ac<br>feugiat<br>sed<br>lectus<br>vestibulum<br></h1>-->
+
+        <div class="col">
+            <div class="row align-items-start h-50">
+                <div class="col" id="final_entryDiv">
+                    <h3 class="text-center">Entry</h3>
+                    <div>
+                        <div class="input-group mb-3">
+                            <label for="final_weightRange" class="form-label" id="final_weightLabel">Final Weight: 10%</label>
+                            <input type="range" class="form-range _js_final-inputCalcRefresh _js_final-estRefresh" min="0" max="1" step="0.05" value="0.10" id="final_weightRange">
+                        </div>
+
+                        <hr>
+                        <div class="mb-3">
+                            <label for="final_s1" class="form-label">Semester Grades</label>
+                            <div class="input-group" style="padding-bottom: 2%">
+                                <span class="input-group-text">S1</span>
+                                <input type="text" class="form-control _js_final-numOnly _js_final-inputCalcRefresh _js_final-estRefresh" id="final_s1" placeholder="Semester 1" inputmode="numeric">
+                                <span class="input-group-text">%</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">S2</span>
+                                <input type="text" class="form-control _js_final-numOnly _js_final-inputCalcRefresh _js_final-estRefresh" id="final_s2" placeholder="Semester 2" inputmode="numeric">
+                                <span class="input-group-text">%</span>
+                            </div>
+                            <div class="form-text">Don't include the percent symbol (%).</div>
+                        </div>
+
+                        <hr>
+                        <div class="mb-3">
+                            <label for="final_f1" class="form-label">Final Exam Grade</label>
+                            <div class="form-text" style="padding-bottom: 1%;">Use either the text box or the slider.</div>
+                            <div class="input-group" style="padding-bottom: 3%">
+                                <span class="input-group-text">F1</span>
+                                <input type="text" class="form-control _js_final-numOnly _js_final-inputCalcRefresh _js_final-estRefresh" id="final_f1" placeholder="Final Exam" inputmode="numeric">
+                                <span class="input-group-text">%</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="range" class="form-range _js_final-inputCalcRefresh _js_final-estRefresh" min="0" max="100" step="1" value="50" id="final_f1_range">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <h3 style="margin-bottom: 16px;">Estimate</h3>
+                    <div class="row">
+                        <div class="input-group mb-3">
+                            <label for="final_estTarget" class="form-label" id="final_estTargetLabel">Target End-of-Year Grade: 90%</label>
+                            <input type="range" class="form-range _js_final-estRefresh" min="0" max="1" step="0.01" value="0.9" id="final_estTarget">
+                        </div>
+                        <div id="final_estDiv" hidden>
+                            <div class="list-group">
+                                <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Final Exam Grade Needed</p><p class="stacked-text w-50" id="final_es-f1">-</p></a>
+                            </div>
+
+                            <br>
+                            <div class="alert alert-dark" role="alert">
+                                Is BetterGrades helpful for you? Please <a target="_blank" href="https://forms.gle/eNXLLCAS7owN98GQ6">submit feedback</a>!
+                            </div>
+                        </div>
+                        <div id="final_estGradeReached">
+                            <h3 style="color: #0f5132">Target Grade Reached</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-start text-center h-50">
+                <div class="col-sm-6 pb-2">
+                    <br>
+                    <h3>Results</h3>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-success"><p class="stacked-text w-50 align-middle"><strong>Final End-of-Year Grade (Y1)</strong></p><p class="stacked-text w-50" id="final_gr-eoy">-</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </div>
 
