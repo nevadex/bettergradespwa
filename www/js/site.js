@@ -30,4 +30,8 @@ function changePage(pg) {
 $(document).ready(function () {
     changePage("final")
     document.getElementById("loadingSpinner").remove()
+
+    if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' });
+    }
 })
