@@ -29,6 +29,24 @@ func main() {
 	if os.Args[1] == "debug" {
 		log.Fatal(app.Listen(":3000"))
 	} else {
+		go redirectHandler() // sub-thread
 		log.Fatal(app.ListenTLS(":443", os.Args[1], os.Args[2]))
 	}
+}
+
+func redirectHandler() {
+	app := fiber.New(fiber.Config{
+		ServerHeader:          "bg redirector",
+		ReadTimeout:           time.Second,
+		WriteTimeout:          time.Second,
+		IdleTimeout:           time.Second,
+		GETOnly:               true,
+		DisableStartupMessage: true,
+	})
+
+	app.Get("/*", func(c *fiber.Ctx) error {
+		return c.Redirect("https://"+c.Hostname(), fiber.StatusMovedPermanently)
+	})
+
+	log.Println(app.Listen(":80"))
 }

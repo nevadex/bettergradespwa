@@ -20,6 +20,7 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-themed border-bottom box-shadow mb-3">
         <div class="container">
             <a class="navbar-brand" style="font-style: italic;">BetterGrades</a>
+            <a class="navbar-text" style="">bg.appliedhcs.net</a>
             <div class="d-flex" role="search">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,10 +37,11 @@
                             <a class="nav-link" id="link_final" onclick="changePage('final')">Finals</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="opacity: 0.5;">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Help
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" id="link_help-addToHome" data-bs-toggle="modal" data-bs-target="#help-addToHomeModal">Add to Home Screen</a></li>
                                 <li><a class="dropdown-item" id="link_help-class" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->Single Class</a></li>
                                 <li><a class="dropdown-item" id="link_help-gpa" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->GPA</a></li>
                                 <li><a class="dropdown-item" id="link_help-final" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->Finals</a></li>
@@ -244,7 +246,7 @@
 <footer class="border-top footer text-muted fixed-bottom _opaque-bg">
     <div class="container" style="text-align: center;">
         <p class="stacked-text top" style="font-size: smaller">bettergrades &copy; neev dadhania mmxxiii.</p>
-        <p class="stacked-text bottom" style="font-size: smaller">originally designed for eastern regional high school.</p>
+        <!--<p class="stacked-text bottom" style="font-size: smaller">originally designed for eastern regional high school.</p>-->
         <!--<p class="stacked-text bottom" style="font-size: smaller"><a href="#">disclaimer</a></p>
         <p class="stacked-text bottom" style="font-size: smaller"><a href="#">privacy</a></p>-->
     </div>
@@ -266,6 +268,26 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
             </div>-->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="help-addToHomeModal" tabindex="-1" aria-labelledby="help-addToHomeModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: 0;">
+                <h1 class="modal-title fs-5">Add <i>BetterGrades</i> to your Home Screen</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                For iOS (iPhone and iPad) Only:<br>
+                <br>
+                1. Tap the "Share" icon at the top of the webpage.<br>
+                2. Scroll down to and tap "Add to Home Screen".<br>
+                3. Tap 'Add'.<br>
+                <br>
+                <i>BetterGrades</i> should now be accessible on your home screen like a regular app.
+            </div>
         </div>
     </div>
 </div>
