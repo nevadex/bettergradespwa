@@ -21,7 +21,7 @@
         <div class="container">
             <a class="navbar-brand" style="font-style: italic;">BetterGrades</a>
             <a class="navbar-text" style="">bg.appliedhcs.net</a>
-            <div class="d-flex" role="search">
+            <div class="d-flex">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -40,11 +40,11 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Help
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" id="link_help-addToHome" data-bs-toggle="modal" data-bs-target="#help-addToHomeModal">Add to Home Screen</a></li>
                                 <li><a class="dropdown-item" id="link_help-class" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->Single Class</a></li>
                                 <li><a class="dropdown-item" id="link_help-gpa" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->GPA</a></li>
-                                <li><a class="dropdown-item" id="link_help-final" data-bs-toggle="modal" data-bs-target="#comingSoonModal" style="opacity: 0.5;"><!--href="#">-->Finals</a></li>
+                                <li><a class="dropdown-item" id="link_help-final" data-bs-toggle="modal" data-bs-target="#help-finalModal">Finals</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -217,11 +217,6 @@
                             <div class="list-group">
                                 <a class="list-group-item list-group-item-info"><p class="stacked-text w-50">Final Exam Grade Needed</p><p class="stacked-text w-50" id="final_es-f1">-</p></a>
                             </div>
-
-                            <br>
-                            <div class="alert alert-dark" role="alert">
-                                Is BetterGrades helpful for you? Please <a target="_blank" href="https://forms.gle/eNXLLCAS7owN98GQ6">submit feedback</a>!
-                            </div>
                         </div>
                         <div id="final_estGradeReached">
                             <h3 style="color: #0f5132">Target Grade Reached</h3>
@@ -236,6 +231,11 @@
                     <h3>Results</h3>
                     <div class="list-group">
                         <a class="list-group-item list-group-item-success"><p class="stacked-text w-50 align-middle"><strong>Final End-of-Year Grade (Y1)</strong></p><p class="stacked-text w-50" id="final_gr-eoy">-</p></a>
+                    </div>
+
+                    <br>
+                    <div class="alert alert-dark" role="alert">
+                        Is BetterGrades helpful for you? Please <a target="_blank" href="https://forms.gle/eNXLLCAS7owN98GQ6">submit feedback</a>!
                     </div>
                 </div>
             </div>
@@ -287,6 +287,33 @@
                 3. Tap 'Add'.<br>
                 <br>
                 <i>BetterGrades</i> should now be accessible on your home screen like a regular app.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="help-finalModal" tabindex="-1" aria-labelledby="help-finalModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: 0;">
+                <h1 class="modal-title fs-5">Using the Finals calculator</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <strong>Entering your current grades:</strong><br>
+                <br>
+                1. Enter your semester grades into the labeled boxes.<br>
+                <br>
+                <strong>Calculating your grade based on a final exam grade:</strong><br>
+                <br>
+                1. Using the slider or box, enter a grade for your final exam in the labeled box.<br>
+                2. The result of this calculation will show up in the green box under Results.<br>
+                <br>
+                <strong>Estimating your minimum final exam grade:</strong><br>
+                <br>
+                1. Underneath "Target End-of-Year Grade", drag the slider to your desired End-of-Year grade (Y1).<br>
+                2. The value displayed in the light blue box is the minimum grade you must get on your final exam to achieve your target End-of-Year grade.<br>
+                3. If the value is ∞% or -∞%, it is impossible for you to achieve your target grade.
             </div>
         </div>
     </div>

@@ -19,7 +19,7 @@ $(document).ready(function () {
     document.getElementById("class_gradeInput").onpaste = e => e.preventDefault()
     document.getElementById("class_gradeInput").addEventListener("keypress", (ev) => {
         ev.currentTarget.classList.remove("is-invalid")
-        if (ev.code === "Enter" || ev.code === "Numpad Enter") {
+        if (ev.code === "Enter" || ev.code === "NumpadEnter") {
             ev.preventDefault()
             //let r = new RegExp("\\d+\\/\\d+", "gm")
             let r = new RegExp("(?:(?:\\d+|(?:\\d+\\.*\\d+))\\/(?:\\d+|(?:\\d+\\.*\\d+)))$", "gm") // support for decimals
